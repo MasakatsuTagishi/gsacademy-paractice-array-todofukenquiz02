@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Flashcard.css">
+    <title>フラッシュカード（都道府県）</title>
+</head>
+<body>
+
+  <main>
+    <p id="count">第1問</p>
+    <!-- ('<img src="">') -->
+    <div class="question"></div>
+
+    <ul id='btn'>
+        <li>
+          <button id="maru_btn">○</button>
+        </li>
+        <li>
+          <button id=batsu_btn>×</button>
+        </li>
+    </ul>    
+  </main>
+
+  <footer class="footer">
+    <h1 id="result">結果は？</h1>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    // クエスチョンの上に画像が入る
+    $('<img src="">').prependTo('.question');
+
+    let count =0;
+    // 都道府県の画像
+    let png1 = "img/愛知県.png";
+    let png2 = "img/愛媛県.png";
+    let png3 = "img/茨城県.png";
+    let png4 = "img/岡山県.png";
+    let png5 = "img/沖縄県.png";
+    let png6 = "img/岩手県.png";
+    let png7 = "img/岐阜県.png";
+    let png8 = "img/宮崎県.png";
+    let png9 = "img/京都府.png";
+    let png10 = "img/熊本県.png";
+    let png11 = "img/群馬県.png";
+    let png12 = "img/広島県.png";
+    let png13 = "img/香川県.png";
+    let png14 = "img/高知県.png";
+    
+    // 画像を入れた配列
+    let img = [png1,png2,png3,png4,png5,png6,png7,png8,png9,png10,png11,png12,png13,png14];
+    // 答えの配列
+    let answer = ['愛知県','愛媛県','茨城県','岡山県','沖縄県','岩手県','岐阜県','宮崎県','京都府','熊本県','群馬県','広島県','香川県','高知県'];
+
+    $('.question > img').attr('src', img[0])
+    $('#count').text('第' + (count+1) +'問');
+
+    $('.question > img').on('click',function() {
+      count++;
+      $('#count').text('第' + (count+1) +'問');
+
+      let randoms =[];
+      let min = 0, max =14;
+      let randomnum = Math.floor( Math.random() * (max - min + 1)) + min;
+      $('.question > img').attr('src', img[randomnum]);
+      console.log(randomnum);
+
+      $('#btn').on('click',function() {
+        if('#maru_btn') {
+            $('#result').text(answer[randomnum]);
+        } else {
+            $('#result').text(answer[randomnum]); 
+        };
+
+    });
+
+
+      //   function intRandom(min, max){
+      //     for(i = min; i <= max; i++){
+      //       while(true){
+      //         let tmp = intRandom(min, max);
+      //         if(!randoms.includes(tmp)){
+      //           randoms.push(tmp);
+      //           break;
+      //         };
+      //       };
+      //     };
+      //   };
+
+      //   function intRandom(min, max){
+      //     return Math.floor( Math.random() * (max - min + 1)) + min;
+      //   };
+
+      // $('.question > img').attr('src', img[randomnum]);
+      // console.log(intRandom(min, max));
+
+    });
+
+    </script>    
+  </body>
+</html>
